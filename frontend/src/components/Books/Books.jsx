@@ -32,12 +32,12 @@ const Books = () => {
       } else {
         setBooksList([])
       }
-
     } catch(error){
 
     }
   }
 
+  // open add-review modal
   const addReview = (bookId) => {
     setSelectedBook(bookId)
     setShowAddReviewModal(true);
@@ -59,6 +59,7 @@ const Books = () => {
     setSelectedBookReviews([]);
   }
 
+  // update state of book list on successfull add of reviews
   const updateReviews = (payload) => {
     const copyBookList = [].concat(booksList);
     const response = copyBookList.map((book, index) => {
