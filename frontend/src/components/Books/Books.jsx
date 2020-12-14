@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import { Container, Item, Image } from 'semantic-ui-react';
 import Reviews from './Reviews';
+import AddReview from './AddReview';
+import Comments from './Comments';
 
 const Books = () => {
 
   const [booksList, setBooksList] = useState([]);
+  const [showAddReviewModal, setShowAddReviewModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState('');
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [selBookReviews, setSelectedBookReviews] = useState([]);
 
   useEffect(() => {
     try {
@@ -20,10 +26,8 @@ const Books = () => {
     try {
       const response = await fetch('/books');
       const result = await response.json();
-
       if(result.status === 'success') {
-        console.log(result);
-        setBooksList(booksList => [...booksList, ...result.data])
+        setBooksList(result.data)
       } else {
         setBooksList([])
       }
@@ -32,6 +36,21 @@ const Books = () => {
 
     }
   }
+
+  const addReview = (bookId) => {
+    setSelectedBook(bookId)
+    setShowAddReviewModal(true);
+  }
+
+  const closeReviewModal = () =>{
+    setShowAddReviewModal(false);
+  }
+
+  const showComments = (reviews) => {
+    setShowCommentModal(true)
+    setSelectedBookReviews(reviews)
+  }
+
   return (
     <>
       <Container>
@@ -50,19 +69,41 @@ const Books = () => {
                 {book.description}
               </Item.Description>
               <Item.Extra>
-                <Reviews />
-                <Image avatar circular src='/images/wireframe/square-image.png' />
-                Add Review
+                <Reviews
+                  totalReviews={book.reviews?book.reviews:[]}
+                />
+                <a herf="#" onClick={()=>addReview(book.id)}>Add Review</a>
               </Item.Extra>
               <Item.Extra>
-                Comments
+              {book.reviews && book.reviews.length > 0?
+                <a herf="#"
+                  onClick={()=>showComments(book.reviews)}
+                  >
+                    Comments({book.reviews?book.reviews.length:0})
+                    </a>
+            :    <a
+                  herf="#"
+                  >
+                  Comments({book.reviews?book.reviews.length:0})
+                </a>
+
+              }
+
               </Item.Extra>
+
             </Item.Content>
           </Item>
         )
         })
       }
         </Item.Group>
+        <AddReview
+          showAddReviewModal={showAddReviewModal}
+          closeReviewModal={closeReviewModal}
+          selectedBook={selectedBook}
+          getBooks={getBooks}
+        />
+        <Comments showCommentModal={showCommentModal} reviews={selBookReviews}/>
       </Container>
     </>
   )
