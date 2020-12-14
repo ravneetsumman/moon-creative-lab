@@ -5,17 +5,14 @@ const Reviews = ({totalReviews}) => {
 
   const [bookRating, setBookRating] = useState(0);
   useEffect(() => {
-    caluclateTotalReviews();
-  },[totalReviews])
-
-  const caluclateTotalReviews = () => {
     if(totalReviews.length > 0){
       const rating = averageRating(totalReviews);
       setBookRating(rating);
     } else {
       setBookRating(0);
     }
-  }
+  },[totalReviews]);
+
 
 
   function averageRating(array) {

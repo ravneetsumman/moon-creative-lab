@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Comment} from 'semantic-ui-react'
+import { Modal, Comment, Icon} from 'semantic-ui-react'
 
 const Comments = ({reviews, showCommentModal, closeCommentModal}) => {
   return (
@@ -7,15 +7,20 @@ const Comments = ({reviews, showCommentModal, closeCommentModal}) => {
       <Modal
         open={showCommentModal}
         size="small"
-        onClose={() => closeCommentModal}
+        onClose={closeCommentModal}
       >
-    <Modal.Header>Comments</Modal.Header>
+    <Modal.Header>Comments
+    <Icon className="comm-close-icon" C name="close" size="small" onClick={closeCommentModal}/>
+    </Modal.Header>
+
       <Modal.Content image scrolling>
           <Comment.Group>
         {reviews.map((review, index) => {
           return (
             <Comment key={`comment_${index}`}>
-            <Comment.Avatar src='/images/avatar/small/jenny.jpg' />
+              <div class="avatar">
+              <Icon name="user outline" size="large" />
+              </div>
               <Comment.Content>
                 <Comment.Author as='a'>Ravneet Kaur</Comment.Author>
                 <Comment.Metadata>

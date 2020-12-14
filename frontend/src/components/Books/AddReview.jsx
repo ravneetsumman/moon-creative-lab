@@ -65,7 +65,7 @@ const AddReview = ({
           <Button basic onClick={closeModal}>
             Cancel
           </Button>
-          <Button basic color='blue' onClick={saveReview}>
+          <Button disabled={comment === '' || rating ===0} basic color='blue' onClick={saveReview}>
             Save
           </Button>
         </Modal.Actions>

@@ -65,7 +65,7 @@ const Books = () => {
           return (
             <Item key={`book_${index}`}>
               <Item.Image size='tiny' src={book.cover} />
-              <Item.Content verticalAlign='top'>
+              <Item.Content>
                 <Item.Header as='a'>{book.name}</Item.Header>
                 <Item.Meta>
                   <span>{book.author}</span>
@@ -73,12 +73,12 @@ const Books = () => {
                 <Item.Description>
                   {book.description}
                 </Item.Description>
-                <Item.Extra verticalAlign="bottom">
+                <Item.Extra>
                   <Reviews totalReviews={book.reviews?book.reviews:[]} />
                   |
                   {book.reviews && book.reviews.length > 0?
                     <a
-                      herf="#"
+                      href="/#"
                       className="review-link"
                       onClick={()=>showComments(book.reviews)}
                     >
@@ -86,14 +86,21 @@ const Books = () => {
                     </a>
                     :
                     <a
-                      herf="#"
+                      href="/#"
                       className="review-link"
                     >
                       Comments({book.reviews?book.reviews.length:0})
                     </a>
                   }
                 </Item.Extra>
-                <Button size="tiny"  basic color='blue' floated="right" onClick={()=>addReview(book.id)}>Add Review</Button>
+                <Button
+                  size="tiny"
+                  basic
+                  color='blue'
+                  floated="right"
+                  onClick={()=>addReview(book.id)}>
+                  Add Review
+                </Button>
               </Item.Content>
             </Item>
           )
