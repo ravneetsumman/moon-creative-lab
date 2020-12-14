@@ -4,6 +4,7 @@ import { Rating } from 'semantic-ui-react';
 const Reviews = ({totalReviews}) => {
 
   const [bookRating, setBookRating] = useState(0);
+
   useEffect(() => {
     if(totalReviews.length > 0){
       const rating = averageRating(totalReviews);
@@ -13,20 +14,17 @@ const Reviews = ({totalReviews}) => {
     }
   },[totalReviews]);
 
-
-
-  function averageRating(array) {
+  const averageRating = (input) => {
     let sum = 0;
-    array.forEach(num => {
+    input.forEach(num => {
        sum += num.ratings;
    });
-   return sum / array.length
+   return sum / input.length
   }
+
   return (
     <>
       <Rating maxRating={5} rating={bookRating} icon='star' disabled/>
     </>
-  )
-
-}
+  )}
 export default Reviews;

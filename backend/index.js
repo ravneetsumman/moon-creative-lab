@@ -15,11 +15,11 @@ var data = [
       cover:'https://s1.nyt.com/du/books/images/9780316420044.jpg',
       reviews:[{
         ratings:4,
-        comment:'test'
+        comment:'Test comment'
       },
       {
         ratings:2,
-        comment:'test hello'
+        comment:'Lorem Ispum'
       }
     ]
     },

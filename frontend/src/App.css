@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+#footer {
+  background-color: #F8F9FA;
+  padding: 10px;
+  box-sizing: border-box;
+  position: sticky;
+}
+#footer span {
+  text-align: center;
+  display: block;
+  margin-bottom: 0;
+
+}

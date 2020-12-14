@@ -78,7 +78,7 @@ const Books = () => {
                   |
                   {book.reviews && book.reviews.length > 0?
                     <a
-                      href="/#"
+                      href={null}
                       className="review-link"
                       onClick={()=>showComments(book.reviews)}
                     >
@@ -86,7 +86,7 @@ const Books = () => {
                     </a>
                     :
                     <a
-                      href="/#"
+                      href={null}
                       className="review-link"
                     >
                       Comments({book.reviews?book.reviews.length:0})
