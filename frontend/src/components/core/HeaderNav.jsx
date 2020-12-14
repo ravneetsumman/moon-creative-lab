@@ -1,15 +1,14 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 
 const HeaderNav = () => {
   return (
     <>
-      <Menu stackable>
+      <Menu inverted>
           <Menu.Item>
-            <img src='/logo.png' />
+            <Icon name="book" size="big"/>
           </Menu.Item>
           <Menu.Item>Books</Menu.Item>
-          <Menu.Item>Sign-in</Menu.Item>
         </Menu>
 
     </>

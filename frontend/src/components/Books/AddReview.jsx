@@ -41,7 +41,7 @@ const AddReview = ({
 
 
   return (
-    <div>
+    <>
       <Modal
         size="tiny"
         open={showAddReviewModal}
@@ -49,7 +49,7 @@ const AddReview = ({
       >
         <Modal.Header>Add Review</Modal.Header>
         <Modal.Content>
-              <Rating maxRating={5} onRate={handleRate} defaultRating={0} icon='star'/>
+              <Rating size='large' maxRating={5} onRate={handleRate} defaultRating={0} icon='star'/>
             <br />
             <br/>
             <Form>
@@ -57,19 +57,20 @@ const AddReview = ({
                 value={comment}
                 onChange={handleChange}
                 placeholder='Add Comment...'
+                maxLength={500}
               />
             </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button negative onClick={closeModal}>
+          <Button basic onClick={closeModal}>
             Cancel
           </Button>
-          <Button positive onClick={saveReview}>
+          <Button basic color='blue' onClick={saveReview}>
             Save
           </Button>
         </Modal.Actions>
       </Modal>
-    </div>
+    </>
   )
 }
 

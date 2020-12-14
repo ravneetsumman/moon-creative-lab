@@ -10,7 +10,6 @@ const Reviews = ({totalReviews}) => {
 
   const caluclateTotalReviews = () => {
     if(totalReviews.length > 0){
-
       const rating = averageRating(totalReviews);
       setBookRating(rating);
     } else {

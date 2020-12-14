@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Item, Image } from 'semantic-ui-react';
+import { Container, Item, Header, Button } from 'semantic-ui-react';
 import Reviews from './Reviews';
 import AddReview from './AddReview';
 import Comments from './Comments';
+import './Books.css';
 
 const Books = () => {
 
@@ -51,64 +52,67 @@ const Books = () => {
     setSelectedBookReviews(reviews)
   }
 
+  const closeCommentModal = () => {
+    setShowCommentModal(false);
+  }
+
   return (
     <>
-      <Container>
+      <Container className="book-container">
+        <Header as='h2' dividing>Books</Header>
         <Item.Group divided>
         {booksList.map((book,index) => {
           return (
-          <Item key={`book_${index}`}>
-            <Item.Image src={book.cover} />
-            <Item.Content>
-              <Item.Header as='a'>{book.name}</Item.Header>
-              <Item.Meta>
-                <span>{book.author}</span>
-                <span>Category</span>
-              </Item.Meta>
-              <Item.Description>
-                {book.description}
-              </Item.Description>
-              <Item.Extra>
-                <Reviews
-                  totalReviews={book.reviews?book.reviews:[]}
-                />
-                <a herf="#" onClick={()=>addReview(book.id)}>Add Review</a>
-              </Item.Extra>
-              <Item.Extra>
-              {book.reviews && book.reviews.length > 0?
-                <a herf="#"
-                  onClick={()=>showComments(book.reviews)}
-                  >
-                    Comments({book.reviews?book.reviews.length:0})
+            <Item key={`book_${index}`}>
+              <Item.Image size='tiny' src={book.cover} />
+              <Item.Content verticalAlign='top'>
+                <Item.Header as='a'>{book.name}</Item.Header>
+                <Item.Meta>
+                  <span>{book.author}</span>
+                </Item.Meta>
+                <Item.Description>
+                  {book.description}
+                </Item.Description>
+                <Item.Extra verticalAlign="bottom">
+                  <Reviews totalReviews={book.reviews?book.reviews:[]} />
+                  |
+                  {book.reviews && book.reviews.length > 0?
+                    <a
+                      herf="#"
+                      className="review-link"
+                      onClick={()=>showComments(book.reviews)}
+                    >
+                      Comments({book.reviews?book.reviews.length:0})
                     </a>
-            :    <a
-                  herf="#"
-                  >
-                  Comments({book.reviews?book.reviews.length:0})
-                </a>
-
-              }
-
-              </Item.Extra>
-
-            </Item.Content>
-          </Item>
-        )
+                    :
+                    <a
+                      herf="#"
+                      className="review-link"
+                    >
+                      Comments({book.reviews?book.reviews.length:0})
+                    </a>
+                  }
+                </Item.Extra>
+                <Button size="tiny"  basic color='blue' floated="right" onClick={()=>addReview(book.id)}>Add Review</Button>
+              </Item.Content>
+            </Item>
+          )
         })
       }
-        </Item.Group>
-        <AddReview
-          showAddReviewModal={showAddReviewModal}
-          closeReviewModal={closeReviewModal}
-          selectedBook={selectedBook}
-          getBooks={getBooks}
-        />
-        <Comments showCommentModal={showCommentModal} reviews={selBookReviews}/>
-      </Container>
-    </>
-  )
-
-}
-
+      </Item.Group>
+      <AddReview
+        showAddReviewModal={showAddReviewModal}
+        closeReviewModal={closeReviewModal}
+        selectedBook={selectedBook}
+        getBooks={getBooks}
+      />
+      <Comments
+        showCommentModal={showCommentModal}
+        reviews={selBookReviews}
+        closeCommentModal={closeCommentModal}
+      />
+    </Container>
+  </>
+)}
 
 export default Books;

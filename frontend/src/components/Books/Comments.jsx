@@ -1,13 +1,14 @@
 import React from 'react';
-import { Button, Icon, Image, Modal, Comment, Header  } from 'semantic-ui-react'
+import { Modal, Comment} from 'semantic-ui-react'
 
-const Comments = ({reviews, showCommentModal}) => {
+const Comments = ({reviews, showCommentModal, closeCommentModal}) => {
   return (
-  <>
-    <Modal
-      open={showCommentModal}
-      size="small"
-    >
+    <>
+      <Modal
+        open={showCommentModal}
+        size="small"
+        onClose={() => closeCommentModal}
+      >
     <Modal.Header>Comments</Modal.Header>
       <Modal.Content image scrolling>
           <Comment.Group>
