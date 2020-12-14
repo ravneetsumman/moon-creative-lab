@@ -21,6 +21,8 @@
   margin-bottom: 20px;
 }
 .not-found{
-  vertical-align: middle !important;
   font-weight: 700;
+}
+.book-header {
+  border-bottom: 3px solid rgba(34,36,38,.15) !important;
 }

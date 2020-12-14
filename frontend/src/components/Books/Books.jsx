@@ -79,7 +79,7 @@ const Books = () => {
   return (
     <>
       <Container className="book-container">
-        <Header as='h2' dividing>Books</Header>
+        <Header as='h2' dividing className="book-header">Books</Header>
         <Item.Group divided>
         {booksList.length > 0?
           booksList.map((book,index) => {
