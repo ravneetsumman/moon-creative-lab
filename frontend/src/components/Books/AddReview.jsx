@@ -6,7 +6,7 @@ const AddReview = ({
   showAddReviewModal,
   closeReviewModal,
   selectedBook,
-  getBooks
+  updateReviews
 }) => {
 
   const [comment, setComment] = useState('');
@@ -38,7 +38,7 @@ const AddReview = ({
     })
     const result = await response.json();
     if(result.status === "success"){
-      getBooks();
+      updateReviews(payload);
       closeModal();
     }
   }

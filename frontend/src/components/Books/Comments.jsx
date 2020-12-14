@@ -19,7 +19,7 @@ const Comments = ({reviews, showCommentModal, closeCommentModal}) => {
           {reviews.map((review, index) => {
             return (
               <Comment key={`comment_${index}`}>
-                <div class="avatar">
+                <div className="avatar">
                 <Icon name="user outline" size="large" />
                 </div>
                 <Comment.Content>

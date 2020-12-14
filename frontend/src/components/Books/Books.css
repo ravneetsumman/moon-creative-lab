@@ -6,6 +6,8 @@
   padding: 10px !important;
   margin-bottom: 5%;
   box-sizing: border-box;
+  min-height: 72vh;
+
 }
 .comm-close-icon {
   float: right !important;
@@ -17,4 +19,8 @@
 }
 .stars-box {
   margin-bottom: 20px;
+}
+.not-found{
+  vertical-align: middle !important;
+  font-weight: 700;
 }

@@ -45,6 +45,7 @@ const Books = () => {
 
   const closeReviewModal = () =>{
     setShowAddReviewModal(false);
+
   }
 
   const showComments = (reviews) => {
@@ -54,6 +55,24 @@ const Books = () => {
 
   const closeCommentModal = () => {
     setShowCommentModal(false);
+    setSelectedBook('');
+    setSelectedBookReviews([]);
+  }
+
+  const updateReviews = (payload) => {
+    const copyBookList = [].concat(booksList);
+    const response = copyBookList.map((book, index) => {
+      if(book.id === payload.id) {
+        if(book.reviews) {
+          book.reviews.push({ratings:payload.rating,comment:payload.comment});
+        } else {
+          book.reviews = [].concat({ratings:payload.rating,comment:payload.comment});
+        }
+      }
+      return book;
+    });
+    setBooksList(response);
+    setSelectedBook('');
   }
 
   return (
@@ -61,7 +80,8 @@ const Books = () => {
       <Container className="book-container">
         <Header as='h2' dividing>Books</Header>
         <Item.Group divided>
-        {booksList.map((book,index) => {
+        {booksList.length > 0?
+          booksList.map((book,index) => {
           return (
             <Item key={`book_${index}`}>
               <Item.Image size='tiny' src={book.cover} />
@@ -105,13 +125,18 @@ const Books = () => {
             </Item>
           )
         })
+        :
+
+
+            <span className="not-found">No Books Found!</span>
+
       }
       </Item.Group>
       <AddReview
         showAddReviewModal={showAddReviewModal}
         closeReviewModal={closeReviewModal}
         selectedBook={selectedBook}
-        getBooks={getBooks}
+        updateReviews={updateReviews}
       />
       <Comments
         showCommentModal={showCommentModal}

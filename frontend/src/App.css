@@ -42,6 +42,7 @@
   padding: 10px;
   box-sizing: border-box;
   position: sticky;
+  margin-bottom: 0;
 }
 #footer span {
   text-align: center;

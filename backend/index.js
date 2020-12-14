@@ -100,15 +100,12 @@ app.post('/save-review', (req, res) => {
   const response = data.map((book, index) => {
     if(book.id === requestPayload.id) {
       if(book.reviews) {
-        console.log('he;lo');
         book.reviews.push({comment:requestPayload.comment,ratings:requestPayload.rating});
-        console.log(book);
       } else {
-        console.log('inside', book);
         book.reviews = [].concat({ratings:requestPayload.rating, comment:requestPayload.comment});
       }
     }
-    return book
+    return book;
   });
   data = response;
 
